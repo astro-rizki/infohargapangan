@@ -6,12 +6,12 @@ name = "pypi"
 [packages]
 gunicorn = "*"
 "httplib2" = "*"
-itsdangerous = "*"
-"oauth2" = "*"
 Flask = "*"
-"Jinja2" = "*"
-MarkupSafe = "*"
-Werkzeug = "*"
+
+tweepy="*"
+datetime="*"
+pandas="*"
+
 
 [dev-packages]
 
