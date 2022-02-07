@@ -8,6 +8,7 @@ from flask import Flask
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
 app = Flask(__name__)
+app.debug = False
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler(os.getenv("CONSUMER_KEY"), os.getenv("CONSUMER_SECRET"))
@@ -26,26 +27,25 @@ DATE = DATE.strftime("%d-%m-%Y")
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
-    try:
-        for i in range(0, len(CATEGORY)):
-            print(i)
-            como = requests.get('https://hargapangan.id/index.php?option=com_gtpihps&price_type_id=1&data_type=price&date='+DATE+'&task=json.getData&commodity_id='+CATEGORY[i])
-            como.raise_for_status()
-            como = como.json()["tableData"]
-            como = json_normalize(como)
-            como.sort_values('value')
-            # Create a tweet
-            api.update_status(CATEGORY_NAME[i])
+    # try:
+    #     for i in range(0, len(CATEGORY)):
+    #         print(i)
+    #         como = requests.get('https://hargapangan.id/index.php?option=com_gtpihps&price_type_id=1&data_type=price&date='+DATE+'&task=json.getData&commodity_id='+CATEGORY[i])
+    #         como.raise_for_status()
+    #         como = como.json()["tableData"]
+    #         como = json_normalize(como)
+    #         como.sort_values('value')
+    #         # Create a tweet
+    #         api.update_status(CATEGORY_NAME[i])
         
-    except HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}')
-    except Exception as err:
-        print(f'Other error occurred: {err}')
+    # except HTTPError as http_err:
+    #     print(f'HTTP error occurred: {http_err}')
+    # except Exception as err:
+    #     print(f'Other error occurred: {err}')
     return 'OK'
   
 # main driver function
 if __name__ == '__main__':
-  
     # run() method of Flask class runs the application 
     # on the local development server.
     app.run()
