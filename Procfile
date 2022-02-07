@@ -1,1 +1,1 @@
-web: gunicorn infohargapangan:app
+web: gunicorn wsgi:app
