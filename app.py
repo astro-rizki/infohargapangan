@@ -19,22 +19,22 @@ DATE = DATE.strftime("%d-%m-%Y")
   
 @app.route('/')
 def hello_world():
-    # try:
-    #     for i in range(0, len(CATEGORY)):
-    #         print(i)
-    #         como = requests.get('https://hargapangan.id/index.php?option=com_gtpihps&price_type_id=1&data_type=price&date='+DATE+'&task=json.getData&commodity_id='+CATEGORY[i])
-    #         como.raise_for_status()
-    #         como = como.json()["tableData"]
-    #         como = json_normalize(como)
-    #         como.sort_values('value')
-    #         # Create a tweet
-    #         api.update_status(CATEGORY_NAME[i])
-        
-    # except HTTPError as http_err:
-    #     print(f'HTTP error occurred: {http_err}')
-    # except Exception as err:
-    #     print(f'Other error occurred: {err}')
-    return "ok"
+    try:
+        for i in range(0, len(CATEGORY)):
+            print(i)
+            como = requests.get('https://hargapangan.id/index.php?option=com_gtpihps&price_type_id=1&data_type=price&date='+DATE+'&task=json.getData&commodity_id='+CATEGORY[i])
+            como.raise_for_status()
+            como = como.json()["tableData"]
+            como = json_normalize(como)
+            como.sort_values('value')
+            # Create a tweet
+            api.update_status(CATEGORY_NAME[i])
+        return "OK"
+    except HTTPError as http_err:
+        return 'HTTP error occurred: {http_err}'
+    except Exception as err:
+        return 'Other error occurred: {err}'
+    
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
