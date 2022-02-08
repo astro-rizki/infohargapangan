@@ -10,7 +10,7 @@ Flask = "*"
 tweepy="*"
 datetime="*"
 pandas="*"
-
+requests="*"
 
 [dev-packages]
 
