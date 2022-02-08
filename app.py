@@ -33,13 +33,8 @@ def hello_world():
     #     print(f'HTTP error occurred: {http_err}')
     # except Exception as err:
     #     print(f'Other error occurred: {err}')
-    return """
-    <h1>Hello heroku</h1>
-    <p>It is currently {time}.</p>
+    return "ok"
 
-    <img src="http://loremflickr.com/600/400" />
-    """.format(time=the_time)
-  
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
 
