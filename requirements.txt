@@ -1,0 +1,7 @@
+gunicorn
+httplib2
+Flask
+tweepy
+datetime
+pandas
+requests
